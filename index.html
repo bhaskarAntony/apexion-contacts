@@ -21,6 +21,11 @@
             width: 100%;
             background-color: #e7ffe4;
             padding: 10px;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         #users li{
             display: flex;
@@ -81,13 +86,12 @@
     <script>
            var userdata = [] 
         document.addEventListener("DOMContentLoaded", function() {
-            // document.getElementById('data-length').innerHTML = `
+            document.getElementById('users').innerHTML = `
             
-            // <div class="spinner-border text-danger" role="status">
-            //     <span class="visually-hidden">Loading...</span>
-            //     </div>
-            // `;
-            // Replace 'your_api_url' with the actual API endpoint
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+                </div>
+            `;
             const apiUrl = 'https://stormy-flannel-nightgown-ox.cyclic.app/isha/api/list';
 
             // Fetch data from the API
@@ -102,6 +106,7 @@
                 .then(data => {
                     // Display the length of the data
                     console.log(data)
+                    document.getElementById('users').innerHTML = ""
                     document.getElementById('len').innerHTML += `${data.length} users registered`
                     data.map((item, index)=>{
                         document.getElementById('users').innerHTML += ` 
