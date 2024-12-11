@@ -19,12 +19,12 @@
             padding: 0px;
             list-style-type: none;
             width: 100%;
-            background-color: #e7ffe4;
+            background-color: #e4edff;
             padding: 10px;
             min-height: 80vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            /* align-items: center;
+            justify-content: center; */
             flex-direction: column;
         }
         #users li{
@@ -48,21 +48,27 @@
             max-width: 40px;
             height: 40px;
             border-radius: 100px;
-            background-color: #039e5b;
+            background-color: #035b9e;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
-            box-shadow: 0px 0px 4px #039e5b;
+            /* box-shadow: 0px 0px 4px #035b9e; */
         }
         .icon a{
             color: #fff;
         }
         header{
-            background-color: #039e5b;
+            background-color: #ffffff;
             position: sticky;
             top: 0;
+            z-index: 1020;
+            border-bottom: 1px solid #ccc;
 
+        }
+        .logo{
+            width: 170px;
+            border-radius: 100px;
         }
       
 
@@ -70,8 +76,8 @@
 </head>
 <body>
     <div class="container-fluid p-0">
-        <header class="p-3 shadow">
-            <span class="fs-4 fw-bold text-white">Isha Tour</span>
+        <header class="p-3">
+           <img src="https://www.apexionglobalsolutions.com/static/media/apexion%20logo.4b8c8509b579a67b0d8f.png" alt="" class="logo">
         </header>
         <div class="shadow p-3 d-flex align-item-center justify-content-between">
             <span class="fs-5" id="len"><i class="fa-solid fa-user text-warning"></i> </span>
@@ -92,7 +98,7 @@
                 <span class="visually-hidden">Loading...</span>
                 </div>
             `;
-            const apiUrl = 'https://stormy-flannel-nightgown-ox.cyclic.app/isha/api/list';
+            const apiUrl = 'https://contacts-backend-k7yi.onrender.com/api/get/contact/list';
 
             // Fetch data from the API
          
@@ -107,22 +113,22 @@
                     // Display the length of the data
                     console.log(data)
                     document.getElementById('users').innerHTML = ""
-                    document.getElementById('len').innerHTML += `${data.length} users registered`
-                    data.map((item, index)=>{
+                    document.getElementById('len').innerHTML += `${data.data.length} Contacts`
+                    data.data.map((item, index)=>{
                         document.getElementById('users').innerHTML += ` 
                     <li>
                         <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" alt="user" class="profile">    
                         <div class="user-info">
                             <span class="fs-5 fw-bold d-block">${item.name}</span>    
-                            <span class="fs-6">${item.phone}</span>    
+                            <span class="fs-6">${item.phonenumber}</span>    
                         </div>
                         <div>
-                            <div class="icon"><a href=tel:${item.phone}><i class="fa-solid fa-phone"></i></a></div>   
+                            <div class="icon"><a href=tel:${item.phonenumber}><i class="fa-solid fa-phone"></i></a></div>   
                         </div>
                     </li>
                     `;
                     })
-                    userdata = data
+                    userdata = data.data;
                   
                 })
                 .catch(error => {
